@@ -33,6 +33,8 @@ export default styled.createGlobalStyle`
     /* để về mặc định 16px và 1.5 line-height */
     line-height: 1.5;
     font-size: 1.6rem;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
   input,

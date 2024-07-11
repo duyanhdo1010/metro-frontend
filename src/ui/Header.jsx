@@ -1,6 +1,9 @@
+/* eslint-disable no-unused-vars */
 import { NavLink } from 'react-router-dom';
 import styled, { css } from 'styled-components';
 import Logo from './Logo';
+import { useSelector } from 'react-redux';
+import useLogout from '../features/authentication/useLogout';
 
 const StyledHeader = styled.header`
   position: sticky;
@@ -12,6 +15,7 @@ const StyledHeader = styled.header`
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); // Tạo hiệu ứng đổ bóng nhẹ cho header
   border: 1px solid var(--color-teal-9);
   background-color: var(--color-teal-0);
+  grid-column: 1 / -1;
 `;
 
 const NavList = styled.ul`
@@ -61,14 +65,26 @@ const StyledNavLink = styled(NavLink)`
 `;
 
 function Header() {
+  const { user } = useSelector((state) => state.auth);
+
+  const { logout, isLoading } = useLogout();
+
+  function handleLogout() {
+    logout();
+  }
+
   return (
     <StyledHeader>
       <nav>
         <NavList>
           <li>
-            <StyledNavLink to="/tours">
-              <span>All Tours</span>
-            </StyledNavLink>
+            {user?.role === 'admin' ? (
+              ''
+            ) : (
+              <StyledNavLink to="/tours">
+                <span>Các Tour</span>
+              </StyledNavLink>
+            )}
           </li>
           <li>
             <StyledNavLink to="/">
@@ -76,12 +92,21 @@ function Header() {
             </StyledNavLink>
           </li>
           <StyledListItem>
-            <StyledNavLink to="/login">
-              <span>Login</span>
-            </StyledNavLink>
-            <StyledNavLink to="/register" type="button">
-              <span type="button">Sign Up</span>
-            </StyledNavLink>
+            {user ? (
+              <>
+                <div>{user.name}</div>
+                <button onClick={handleLogout}>Logout</button>
+              </>
+            ) : (
+              <>
+                <StyledNavLink to="/login">
+                  <span>Đăng nhập</span>
+                </StyledNavLink>
+                <StyledNavLink to="/register" type="button">
+                  <span type="button">Đăng ký</span>
+                </StyledNavLink>
+              </>
+            )}
           </StyledListItem>
         </NavList>
       </nav>

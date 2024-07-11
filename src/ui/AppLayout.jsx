@@ -8,10 +8,16 @@ const StyledAppLayout = styled.div`
   flex-direction: column;
   min-height: 100vh;
   justify-content: space-between;
+  max-width: 100vw;
 `;
 
 const Main = styled.main`
-  padding: 4rem 4.8rem 6.4rem;
+  flex-grow: 1;
+  display: flex;
+  /* padding: 4rem 4.8rem 6.4rem; */
+  /* justify-content: center;
+  align-items: center; */
+  max-width: 100vw;
 `;
 
 function AppLayout() {
