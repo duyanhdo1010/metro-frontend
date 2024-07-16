@@ -30,6 +30,21 @@ const StyledListItem = styled.li`
   align-items: center;
 `;
 
+const StyledButton = styled.button`
+  text-transform: uppercase;
+  font-weight: bold;
+  color: var(--color-teal-0);
+  background-color: var(--color-teal-6);
+  padding: 0.8rem 1.2rem;
+  border-radius: 1000px;
+  border: none;
+  cursor: pointer;
+  &:hover,
+  &:active {
+    background-color: var(--color-teal-9);
+  }
+`;
+
 const StyledNavLink = styled(NavLink)`
   text-transform: uppercase;
   font-weight: bold;
@@ -64,9 +79,41 @@ const StyledNavLink = styled(NavLink)`
     `}
 `;
 
+const StyledAvatar = styled.img`
+  max-height: 5.2rem;
+  width: auto;
+  border-radius: 50%; /* Làm cho hình ảnh trở nên tròn */
+  cursor: pointer;
+`;
+
+const DropdownContainer = styled.div`
+  color: var(--color-teal-9);
+  font-weight: 500;
+  position: relative;
+  display: inline-block;
+  &:hover .dropdown {
+    display: flex;
+    flex-direction: column;
+    left: 50%;
+    transform: translateX(-50%); /* Thêm dòng này */
+    cursor: pointer;
+  }
+`;
+
+const Dropdown = styled.div`
+  padding: 1.2rem 1.6rem;
+  display: none;
+  position: absolute;
+  z-index: 1;
+  background-color: #fff;
+  min-width: 20rem;
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.1),
+    0 2px 4px rgba(0, 0, 0, 0.06);
+`;
+
 function Header() {
   const { user } = useSelector((state) => state.auth);
-
   const { logout, isLoading } = useLogout();
 
   function handleLogout() {
@@ -94,8 +141,21 @@ function Header() {
           <StyledListItem>
             {user ? (
               <>
-                <div>{user.name}</div>
-                <button onClick={handleLogout}>Logout</button>
+                <DropdownContainer>
+                  <StyledAvatar
+                    src={
+                      user?.photo
+                        ? `http://localhost:3000/img/users/${user?.photo}`
+                        : `/default-avatar.png`
+                    }
+                    alt="User Avatar"
+                  />
+                  <Dropdown className="dropdown">
+                    <NavLink to="/admin/me">Quản lý thông tin</NavLink>
+                    <NavLink to="/me">Bookings</NavLink>
+                  </Dropdown>
+                </DropdownContainer>
+                <StyledButton onClick={handleLogout}>Logout</StyledButton>
               </>
             ) : (
               <>

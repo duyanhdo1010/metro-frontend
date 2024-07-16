@@ -48,3 +48,15 @@ export async function deleteUser(userId) {
     throw err;
   }
 }
+
+export async function updateMe(data) {
+  try {
+    const response = await axios.patch(`http://localhost:3000/api/v1/users/updateMe`, data, {
+      withCredentials: true // cho phép gửi thông tin xác thực như cookie hoặc header
+    });
+    return response.data.data.user;
+  } catch (err) {
+    console.log(err.response ? err.response.data.message : err.message);
+    throw err;
+  }
+}

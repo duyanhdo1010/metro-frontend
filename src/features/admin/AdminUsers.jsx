@@ -37,6 +37,7 @@ function AdminUsers() {
       { field: '_id', headerName: 'ID', filter: 'agTextColumnFilter' },
       { field: 'name', filter: 'agTextColumnFilter' },
       { field: 'email', filter: 'agTextColumnFilter' },
+      { field: 'phone', filter: 'agTextColumnFilter' },
       { field: 'role', filter: 'agTextColumnFilter' },
       { field: 'active', headerName: 'Trạng thái tài khoản' },
       {

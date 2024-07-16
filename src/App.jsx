@@ -65,6 +65,7 @@ function App() {
                 <Route path="/admin/dashboard" element={<AdminDashboard />} />
                 <Route path="/admin/tours" element={<AdminTours />} />
                 <Route path="/admin/users" element={<AdminUsers />} />
+                <Route path="/admin/me" element={<User />} />
               </Route>
 
               <Route path="*" element={<NotFoundPage />} />
