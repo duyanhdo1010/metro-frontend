@@ -151,8 +151,10 @@ function Header() {
                     alt="User Avatar"
                   />
                   <Dropdown className="dropdown">
-                    <NavLink to="/admin/me">Quản lý thông tin</NavLink>
-                    <NavLink to="/me">Bookings</NavLink>
+                    <NavLink to={user?.role === 'admin' ? '/admin/me' : '/me'}>
+                      Quản lý thông tin
+                    </NavLink>
+                    <NavLink to="/bookings">Bookings</NavLink>
                   </Dropdown>
                 </DropdownContainer>
                 <StyledButton onClick={handleLogout}>Logout</StyledButton>

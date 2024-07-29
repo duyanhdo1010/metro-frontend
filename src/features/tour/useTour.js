@@ -2,9 +2,10 @@ import { useQuery } from '@tanstack/react-query';
 import { getTour } from '../../services/apiTours';
 import { useParams } from 'react-router-dom';
 
-export function useTour() {
+export function useTour(inputTourId) {
   // lấy tourId từ params
-  const { tourId } = useParams();
+  const params = useParams();
+  const tourId = inputTourId || params.tourId;
   const {
     isLoading,
     data: tour,
