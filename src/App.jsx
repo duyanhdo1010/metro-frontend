@@ -4,7 +4,7 @@ import HomePage from './pages/HomePage';
 import NotFoundPage from './pages/NotFoundPage';
 import GlobalStyles from './styles/GlobalStyles';
 import Tour from './pages/Tour';
-import Booking from './pages/Booking';
+import MyBooking from './pages/MyBooking';
 import User from './pages/User';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
@@ -22,6 +22,7 @@ import AdminRoutes from './ui/AdminRoutes';
 import AdminDashboard from './features/admin/AdminDashboard';
 import AdminTours from './features/admin/AdminTours';
 import AdminUsers from './features/admin/AdminUsers';
+import TourBooking from './pages/TourBooking';
 
 //khoi tao query Client
 const queryClient = new QueryClient({
@@ -52,8 +53,9 @@ function App() {
                 <Route path="/register" element={<SignUp />} />
                 {/* Cần đăng nhập */}
                 <Route element={<ProtectedRoutes />}>
-                  <Route path="/bookings" element={<Booking />} />
+                  <Route path="/me/bookings" element={<MyBooking />} />
                   <Route path="/me" element={<User />} />
+                  <Route path="/tours/:tourId/booking" element={<TourBooking />} />
                 </Route>
               </Route>
               {/* Dành cho Admin */}

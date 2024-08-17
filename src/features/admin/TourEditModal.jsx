@@ -255,6 +255,7 @@ function TourEditModal({ tourId, onClose }) {
     formData.append('maxGroupSize', data.maxGroupSize);
     formData.append('price', data.price);
     formData.append('discount', data.discount);
+    formData.append('description', data.description);
 
     if (selectedImageCover) {
       formData.append('imageCover', selectedImageCover);

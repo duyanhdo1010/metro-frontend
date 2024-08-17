@@ -42,11 +42,12 @@ function Slider({ slides }) {
       rewind={true}
       navigation
       pagination={{ clickable: true, dynamicBullets: true }}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}>
-      {slides.map((slide) => (
-        <SwiperSlide key={slide}>
-          <StyledImage src={slide.image} alt={slide.title} />
+      // onSlideChange={() => console.log('slide change')}
+      // onSwiper={(swiper) => console.log(swiper)}
+    >
+      {slides.map((slide, index) => (
+        <SwiperSlide key={index}>
+          <StyledImage src={slide.image} alt={slide.title} key={index} />
         </SwiperSlide>
       ))}
     </SliderContainer>

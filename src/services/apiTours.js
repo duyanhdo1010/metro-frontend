@@ -55,9 +55,9 @@ export async function updateTour(tourId, formData) {
 
 export async function createTour(formData) {
   try {
-    for (let [key, value] of formData.entries()) {
-      console.log(key, value);
-    }
+    // for (let [key, value] of formData.entries()) {
+    //   console.log(key, value);
+    // }
     const response = await axios.post(`http://localhost:3000/api/v1/tours/`, formData, {
       withCredentials: true // cho phép gửi thông tin xác thực như cookie hoặc header
     });

@@ -234,6 +234,7 @@ function TourCreateModal({ onClose }) {
     formData.append('maxGroupSize', data.maxGroupSize);
     formData.append('price', data.price);
     formData.append('discount', data.discount);
+    formData.append('description', data.description);
 
     if (selectedImageCover) {
       formData.append('imageCover', selectedImageCover);
@@ -399,7 +400,7 @@ function TourCreateModal({ onClose }) {
         </RowWrapper>
         {errors?.startDates?.message && <InputError>{errors?.startDates?.message}</InputError>}
       </FormRow>
-      <StyledButton type="submit">Cập nhật thông tin</StyledButton>
+      <StyledButton type="submit">Tạo mới Tour</StyledButton>
     </Form>
   );
 }

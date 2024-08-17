@@ -82,7 +82,7 @@ const DateDetailsContainer = styled.div`
 function TourCard({ tour }) {
   return (
     <StyledTourCard>
-      <StyledTourImage src="/card-example.jpg" />
+      <StyledTourImage src={`http://localhost:3000/img/tours/${tour?.imageCover}`} />
       <StyledTourDetails>
         <TourDetailsHeader>{tour?.name}</TourDetailsHeader>
         <TourDetailsDescription>{tour?.description}</TourDetailsDescription>

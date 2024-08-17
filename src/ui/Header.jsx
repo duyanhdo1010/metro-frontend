@@ -154,7 +154,7 @@ function Header() {
                     <NavLink to={user?.role === 'admin' ? '/admin/me' : '/me'}>
                       Quản lý thông tin
                     </NavLink>
-                    <NavLink to="/bookings">Bookings</NavLink>
+                    <NavLink to="/me/bookings">Bookings của tôi</NavLink>
                   </Dropdown>
                 </DropdownContainer>
                 <StyledButton onClick={handleLogout}>Logout</StyledButton>

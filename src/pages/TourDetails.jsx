@@ -2,25 +2,7 @@ import styled from 'styled-components';
 import { useTour } from '../features/tour/useTour';
 import Slider from '../ui/Slider';
 import { FaDollarSign, FaMapMarker, FaMapMarkerAlt, FaRegClock, FaUser } from 'react-icons/fa';
-
-const slides = [
-  {
-    image: '/details-01.jpg',
-    title: 'image-01'
-  },
-  {
-    image: '/details-02.jpg',
-    title: 'image-02'
-  },
-  {
-    image: '/details-03.jpg',
-    title: 'image-03'
-  },
-  {
-    image: '/details-04.jpg',
-    title: 'image-04'
-  }
-];
+import { useNavigate } from 'react-router-dom';
 
 const WrapperTour = styled.div`
   display: flex;
@@ -32,6 +14,8 @@ const WrapperBooking = styled.div``;
 const WrapperComment = styled.div``;
 
 const StyledDetail = styled.div`
+  display: flex;
+  flex-direction: column;
   padding: 1.6rem 2.4rem;
   flex: 1;
 `;
@@ -51,6 +35,8 @@ const DetailInfo = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+  justify-content: space-between;
+  flex: 1;
 `;
 
 const InfoWrapper = styled.div`
@@ -76,9 +62,13 @@ const OrderButton = styled.button`
     background-color: var(--color-teal-9);
   }
 `;
-
 function TourDetails() {
   const { isLoading, tour } = useTour();
+  const navigate = useNavigate();
+  const slides = tour?.images.map((image, index) => ({
+    image: `http://localhost:3000/img/tours/${image}`,
+    title: `image-${index + 1}`
+  }));
   if (isLoading) return <div>Loading...</div>;
 
   return (
@@ -88,34 +78,41 @@ function TourDetails() {
         <StyledDetail>
           <DetailHeader>{tour.name}</DetailHeader>
           <DetailInfo>
-            <InfoWrapper>
-              <FaRegClock /> Thời lượng tour: <strong>{tour.duration} ngày</strong>
-            </InfoWrapper>
-            <InfoWrapper>
-              <FaUser />
-              Số người tối đa: <strong>{tour.maxGroupSize}</strong>
-            </InfoWrapper>
-            <InfoWrapper>
-              <FaMapMarkerAlt />
-              Điểm bắt đầu: <strong>{tour.locations[0]}</strong>
-            </InfoWrapper>
-            <InfoWrapper>
-              <FaMapMarker />
-              {/* cut phần từ đầu tiên đi vì nó làm điểm bắt đầu */}
-              Các điểm đến: <strong>{tour.locations.slice(1).join(' - ')}</strong>
-            </InfoWrapper>
-            <InfoWrapper>
-              <FaDollarSign />
-              Giá:{' '}
-              <strong style={{ textDecoration: tour.discount > 0 ? 'line-through' : 'none' }}>
-                {tour.price}
-              </strong>
-              <strong>
-                {' '}
-                {tour.discount > 0 && <AfterPrice>{tour.price - tour.discount}</AfterPrice>}
-              </strong>
-            </InfoWrapper>
-            <OrderButton>Đặt tour ngay</OrderButton>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '0.8rem'
+              }}>
+              <InfoWrapper>
+                <FaRegClock /> Thời lượng tour: <strong>{tour.duration} ngày</strong>
+              </InfoWrapper>
+              <InfoWrapper>
+                <FaUser />
+                Số người tối đa: <strong>{tour.maxGroupSize}</strong>
+              </InfoWrapper>
+              <InfoWrapper>
+                <FaMapMarkerAlt />
+                Điểm bắt đầu: <strong>{tour.locations[0]}</strong>
+              </InfoWrapper>
+              <InfoWrapper>
+                <FaMapMarker />
+                {/* cut phần từ đầu tiên đi vì nó làm điểm bắt đầu */}
+                Các điểm đến: <strong>{tour.locations.slice(1).join(' - ')}</strong>
+              </InfoWrapper>
+              <InfoWrapper>
+                <FaDollarSign />
+                Giá:{' '}
+                <strong style={{ textDecoration: tour.discount > 0 ? 'line-through' : 'none' }}>
+                  {tour.price}
+                </strong>
+                <strong>
+                  {' '}
+                  {tour.discount > 0 && <AfterPrice>{tour.price - tour.discount}</AfterPrice>}
+                </strong>
+              </InfoWrapper>
+            </div>
+            <OrderButton onClick={() => navigate('./booking')}>Đặt tour ngay</OrderButton>
           </DetailInfo>
         </StyledDetail>
       </WrapperTour>
