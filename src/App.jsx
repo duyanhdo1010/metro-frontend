@@ -23,6 +23,7 @@ import AdminDashboard from './features/admin/AdminDashboard';
 import AdminTours from './features/admin/AdminTours';
 import AdminUsers from './features/admin/AdminUsers';
 import TourBooking from './pages/TourBooking';
+import AdminBookings from './features/admin/AdminBookings';
 
 //khoi tao query Client
 const queryClient = new QueryClient({
@@ -69,6 +70,7 @@ function App() {
                 <Route path="/admin/tours" element={<AdminTours />} />
                 <Route path="/admin/users" element={<AdminUsers />} />
                 <Route path="/admin/me" element={<User />} />
+                <Route path="/admin/bookings" element={<AdminBookings />} />
               </Route>
 
               <Route path="*" element={<NotFoundPage />} />

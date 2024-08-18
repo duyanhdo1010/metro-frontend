@@ -1,4 +1,4 @@
-import { FaFlag, FaHome, FaUser } from 'react-icons/fa';
+import { FaCalendar, FaFlag, FaHome, FaUser } from 'react-icons/fa';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -59,6 +59,10 @@ function AdminSidebar() {
       <StyledNavLink to="/admin/users">
         <FaUser />
         Users
+      </StyledNavLink>
+      <StyledNavLink to="/admin/bookings">
+        <FaCalendar />
+        Bookings
       </StyledNavLink>
     </StyledSidebar>
   );
